@@ -26,4 +26,144 @@
         <label for="lengthFrom">From:</label>
         <select id="lengthFrom">
             <option value="meters">Meters</option>
-            <option value="
+            <option value="feet">Feet</option>
+            <option value="inches">Inches</option>
+            <option value="cm">Centimeters</option>
+        </select>
+        
+        <label for="lengthTo">To:</label>
+        <select id="lengthTo">
+            <option value="meters">Meters</option>
+            <option value="feet">Feet</option>
+            <option value="inches">Inches</option>
+            <option value="cm">Centimeters</option>
+        </select>
+        
+        <button onclick="convertLength()">Convert</button>
+        <p id="lengthResult"></p>
+    </div>
+    
+    <div class="converter">
+        <h2>Weight Converter</h2>
+        <label for="weightInput">Enter value:</label>
+        <input type="number" id="weightInput" placeholder="Enter value">
+        
+        <label for="weightFrom">From:</label>
+        <select id="weightFrom">
+            <option value="kg">Kilograms</option>
+            <option value="lbs">Pounds</option>
+            <option value="g">Grams</option>
+            <option value="oz">Ounces</option>
+        </select>
+        
+        <label for="weightTo">To:</label>
+        <select id="weightTo">
+            <option value="kg">Kilograms</option>
+            <option value="lbs">Pounds</option>
+            <option value="g">Grams</option>
+            <option value="oz">Ounces</option>
+        </select>
+        
+        <button onclick="convertWeight()">Convert</button>
+        <p id="weightResult"></p>
+    </div>
+    
+    <div class="converter">
+        <h2>Temperature Converter</h2>
+        <label for="tempInput">Enter value:</label>
+        <input type="number" id="tempInput" placeholder="Enter value">
+        
+        <label for="tempFrom">From:</label>
+        <select id="tempFrom">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="kelvin">Kelvin</option>
+        </select>
+        
+        <label for="tempTo">To:</label>
+        <select id="tempTo">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="kelvin">Kelvin</option>
+        </select>
+        
+        <button onclick="convertTemperature()">Convert</button>
+        <p id="tempResult"></p>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('lengthInput').value);
+            const from = document.getElementById('lengthFrom').value;
+            const to = document.getElementById('lengthTo').value;
+            if (isNaN(value)) {
+                document.getElementById('lengthResult').innerText = 'Please enter a valid number.';
+                return;
+            }
+            let meters;
+            switch (from) {
+                case 'meters': meters = value; break;
+                case 'feet': meters = value * 0.3048; break;
+                case 'inches': meters = value * 0.0254; break;
+                case 'cm': meters = value * 0.01; break;
+            }
+            let result;
+            switch (to) {
+                case 'meters': result = meters; break;
+                case 'feet': result = meters / 0.3048; break;
+                case 'inches': result = meters / 0.0254; break;
+                case 'cm': result = meters / 0.01; break;
+            }
+            document.getElementById('lengthResult').innerText = `Result: ${result.toFixed(4)} ${to}`;
+        }
+
+        function convertWeight() {
+            const value = parseFloat(document.getElementById('weightInput').value);
+            const from = document.getElementById('weightFrom').value;
+            const to = document.getElementById('weightTo').value;
+            if (isNaN(value)) {
+                document.getElementById('weightResult').innerText = 'Please enter a valid number.';
+                return;
+            }
+            let kg;
+            switch (from) {
+                case 'kg': kg = value; break;
+                case 'lbs': kg = value * 0.453592; break;
+                case 'g': kg = value * 0.001; break;
+                case 'oz': kg = value * 0.0283495; break;
+            }
+            let result;
+            switch (to) {
+                case 'kg': result = kg; break;
+                case 'lbs': result = kg / 0.453592; break;
+                case 'g': result = kg / 0.001; break;
+                case 'oz': result = kg / 0.0283495; break;
+            }
+            document.getElementById('weightResult').innerText = `Result: ${result.toFixed(4)} ${to}`;
+        }
+
+        function convertTemperature() {
+            const value = parseFloat(document.getElementById('tempInput').value);
+            const from = document.getElementById('tempFrom').value;
+            const to = document.getElementById('tempTo').value;
+            if (isNaN(value)) {
+                document.getElementById('tempResult').innerText = 'Please enter a valid number.';
+                return;
+            }
+            let celsius;
+            switch (from) {
+                case 'celsius': celsius = value; break;
+                case 'fahrenheit': celsius = (value - 32) * 5 / 9; break;
+                case 'kelvin': celsius = value - 273.15; break;
+            }
+            let result;
+            switch (to) {
+                case 'celsius': result = celsius; break;
+                case 'fahrenheit': result = (celsius * 9 / 5) + 32; break;
+                case 'kelvin': result = celsius + 273.15; break;
+            }
+            document.getElementById('tempResult').innerText = `Result: ${result.toFixed(2)} °${to.charAt(0).toUpperCase()}`;
+        }
+    </script>
+</body>
+</html>
